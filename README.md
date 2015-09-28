@@ -31,7 +31,7 @@ When working with this library the programming model is simple:
 2. Use the Fluent R task builder to invoke the DSL within your application.
 3. Use the Fluent R task result data as needed directly within your application.
 
-The following examples are provided to demonstrate basic usage.
+The Fluent R library Javadoc is available [here](http://www.javadoc.io/doc/io.onetapbeyond/fluent-r/). The following examples are provided to demonstrate basic usage.
 
 ### DeployR Analytics Integration Example
 
@@ -104,7 +104,7 @@ This example demonstrates a custom DSL being read from a `String` but the librar
 The *FluentResult* returned by the task execution provides easy access to all requested data. If your DSL makes an R function call then the return value of the function is automatically made available in the Map, for example:
 
 ```
-List rnorm = objects.get("rnorm")
+List rnorm = fluentResult.objects.get("rnorm")
 ```
 
 If your DSL makes an R script call the available console, plot, wd, and workspace data in the *FluentResult* will correspond to your use of *fetch* verbs in your DSL.
