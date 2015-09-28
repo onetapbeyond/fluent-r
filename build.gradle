@@ -1,0 +1,127 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+group = "io.onetapbeyond"
+archivesBaseName = "fluent-r"
+version = "1.0"
+
+configurations {
+   groovyDoc
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile 'com.revolutionanalytics.deployr:jRBroker:7.4.8'
+    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
+    compile 'com.google.code.gson:gson:2.3.1'
+    testCompile 'junit:junit:4.12'
+	groovyDoc 'org.codehaus.groovy:groovy-groovydoc:2.4.4'
+    groovyDoc 'org.codehaus.groovy:groovy-ant:2.4.4'
+}
+
+test {
+	exclude '**'
+}
+
+task deployrTest(type: Test) {
+  description = 'Tests DeployR Fluent R DSL Integration.'
+	systemProperty 'username', 'testuser'
+	systemProperty 'password', 'changeme'
+	systemProperty 'endpoint', 'http://localhost:7400/deployr'
+	systemProperty 'blindTrust', 'true'
+	include 'io/onetapbeyond/fluent/r/deployr/**'
+	exclude 'io/onetapbeyond/fluent/r/opencpu/**'
+}
+
+task opencpuTest(type: Test) {
+  description = 'Tests OpenCPU Fluent R DSL Integration.'
+  systemProperty 'endpoint', 'https://public.opencpu.org/ocpu/'
+  systemProperty 'blindTrust', 'true'
+  include 'io/onetapbeyond/fluent/r/opencpu/**'
+  exclude 'io/onetapbeyond/fluent/r/deployr/**'
+}
+
+groovydoc {
+	docTitle = "Fluent R - Analytics Integration, Naturally"
+	footer = "Simple R Integration for Java, Groovy, Scala and Clojure Developers."
+	groovyClasspath = configurations.groovyDoc
+	includePrivate = false
+	use = true
+	overview = "src/main/groovy/overview.html"
+	exclude "io/onetapbeyond/fluent/r/dsl/**/*.groovy"
+	exclude "io/onetapbeyond/fluent/r/nouns/**/*.groovy"
+	exclude "io/onetapbeyond/fluent/r/results/**/*.groovy"
+	exclude "io/onetapbeyond/fluent/r/verbs/**/*.groovy"
+	exclude "io/onetapbeyond/fluent/r/Demo*.groovy"
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from groovydoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      pom.project {
+        name 'fluent-r'
+        packaging 'jar'
+        description 'Fluent R - Analytics Integration, Naturally.'
+        url 'https://github.com/onetapbeyond/fluent-r'
+
+        scm {
+          connection 'scm:svn:http://foo.googlecode.com/svn/trunk/'
+          developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
+          url 'http://foo.googlecode.com/svn/trunk/'
+        }
+
+        licenses {
+          license {
+            name 'The Apache License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          }
+        }
+
+        developers {
+          developer {
+            id 'onetapbeyond'
+            name 'David Russell'
+            email ''
+          }
+        }
+      }
+    }
+  }
+}
