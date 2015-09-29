@@ -40,11 +40,9 @@ The Fluent R library Javadoc is available [here](http://www.javadoc.io/doc/io.on
 The following example DSL requests the execution of the `Histogram of Auto Sales` repository-managed script owned by `testuser` followed by the retrieval of the `histogram.png` file generated into the working directory (wd) and the `cars` and `trucks` objects generated into the workspace by that script:
 
 ```
-String fluentDSL = """
 execute 'Histogram of Auto Sales' from 'root' by 'testuser'
 fetch 'histogram.png' from wd
 fetch 'cars', 'trucks' from workspace
-"""
 ```
 
 **[2] Use the Fluent R task builder to invoke the DSL within your application.**
@@ -59,7 +57,7 @@ FluentResult fluentResult = fluentTask("http://localhost:7400/deployr")
 						    .execute()
 ```
 
-This example demonstrates a custom DSL being read from a `String` but the library also supports *streaming* custom DSL definitions from numerous local and remote sources, including `URL`, `URI`, `File`, `Path`, `InputStream`, `Reader`.
+The `fluentDSL` parameter value in this example represents a custom DSL. The DSL may be read from a `String` but the library also supports *streaming* custom DSL definitions from numerous local and remote sources, including `URL`, `URI`, `File`, `Path`, `InputStream`, `Reader`.
 
 **[3] Use the Fluent R task result data as needed directly within your application.**
 
@@ -79,9 +77,7 @@ RData trucks = objects.get("trucks")
 The following example DSL requests the execution of the `rnorm` function within the `stats` package:
 
 ```
-String fluentDSL = """
 execute 'rnorm' from 'stats'
-"""
 ```
 
 **[2] Use the Fluent R task builder to invoke the DSL within your application.**
@@ -97,7 +93,7 @@ FluentResult fluentResult = fluentTask("http://public.opencpu.org/ocpu/")
 						    .execute()
 ```
 
-This example demonstrates a custom DSL being read from a `String` but the library also supports *streaming* custom DSL definitions from numerous local and remote sources, including `URL`, `URI`, `File`, `Path`, `InputStream`, `Reader`.
+The `fluentDSL` parameter value in this example represents a custom DSL. The DSL may be read from a `String` but the library also supports *streaming* custom DSL definitions from numerous local and remote sources, including `URL`, `URI`, `File`, `Path`, `InputStream`, `Reader`.
 
 **[3] Use the Fluent R task result data as needed directly within your application.**
 
