@@ -8,7 +8,7 @@ targetCompatibility = 1.6
 
 group = "io.onetapbeyond"
 archivesBaseName = "fluent-r"
-version = "1.0"
+version = "1.1"
 
 configurations {
    groovyDoc
@@ -19,13 +19,13 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile 'org.codehaus.groovy:groovy-all:2.4.3'
     compile 'com.revolutionanalytics.deployr:jRBroker:7.4.8'
     compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
     compile 'com.google.code.gson:gson:2.3.1'
     testCompile 'junit:junit:4.12'
-	groovyDoc 'org.codehaus.groovy:groovy-groovydoc:2.4.4'
-    groovyDoc 'org.codehaus.groovy:groovy-ant:2.4.4'
+  	groovyDoc 'org.codehaus.groovy:groovy-groovydoc:2.4.3'
+    groovyDoc 'org.codehaus.groovy:groovy-ant:2.4.3'
 }
 
 test {
