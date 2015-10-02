@@ -10,7 +10,7 @@ For a complete description of the Fluent R DSLs currently supported by the libra
 ### Gradle Dependency
 
 ```
-compile 'io.onetapbeyond:fluent-r:1.0'
+compile 'io.onetapbeyond:fluent-r:1.1'
 ```
 
 ### Maven Dependency
@@ -19,7 +19,7 @@ compile 'io.onetapbeyond:fluent-r:1.0'
 <dependency>
   <groupId>io.onetapbeyond</groupId>
   <artifactId>fluent-r</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
 </dependency>
 ```
 
@@ -31,7 +31,7 @@ When working with this library the programming model is simple:
 2. Use the Fluent R task builder to invoke the DSL within your application.
 3. Use the Fluent R task result data as needed directly within your application.
 
-The Fluent R library Javadoc is available [here](http://www.javadoc.io/doc/io.onetapbeyond/fluent-r/). The following examples are provided to demonstrate basic usage.
+The Fluent R library Javadoc is available [here](http://www.javadoc.io/doc/io.onetapbeyond/fluent-r/). Sample DSLs and integration code for *DeployR* and *OpenCPU* are available as gist repositories on github [here](https://gist.github.com/search?utf8=%E2%9C%93&q=fluent-r). The examples that follow are provided to demonstrate basic usage.
 
 ### DeployR Analytics Integration Example
 
