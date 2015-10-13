@@ -1,11 +1,13 @@
 ## fluent-r
 
-The Fluent R library offers a simple solution for R analytics integration within any Java, Groovy, Scala or Clojure application. The library exposes a simple and intuitive natural language interface called the Fluent R DSL. This DSL supports the declaration and execution of R analytics services offered by popular open source R integration servers, including [DeployR](http://deployr.revolutionanalytics.com) and [OpenCPU](http://opencpu.org).
+The fluent-r library offers a simple solution for R analytics integration within any Java, Groovy, Scala or Clojure application. The library exposes a simple and intuitive natural language interface called the Fluent R DSL. This DSL supports the declaration and execution of R analytics services offered by popular open source R integration servers, including [DeployR](http://deployr.revolutionanalytics.com) and [OpenCPU](http://opencpu.org).
 
-For a complete description of the Fluent R DSLs currently supported by the library see the following grammar specifications:
+For a complete description of the Fluent R DSLs currently supported by the library see the following language specifications:
 
 - [DeployR Fluent R DSL](dsl/deployr/README.md)
 - [OpenCPU Fluent R DSL](dsl/opencpu/README.md)
+
+For a discussion on building `Zero-Code R Integration APIs` that highlights the ease of potential of using the fluent-r library see the following [short guide](design/README.md).
 
 ### Gradle Dependency
 
@@ -31,7 +33,7 @@ When working with this library the programming model is simple:
 2. Use the Fluent R task builder to invoke the DSL within your application.
 3. Use the Fluent R task result data as needed directly within your application.
 
-The Fluent R library Javadoc is available [here](http://www.javadoc.io/doc/io.onetapbeyond/fluent-r/). Sample DSLs and integration code for *DeployR* and *OpenCPU* are available as gist repositories on github [here](https://gist.github.com/search?utf8=%E2%9C%93&q=fluent-r). The examples that follow are provided to demonstrate basic usage.
+The fluent-r library Javadoc is available [here](http://www.javadoc.io/doc/io.onetapbeyond/fluent-r/). Sample DSLs and integration code for *DeployR* and *OpenCPU* are available as gist repositories on github [here](https://gist.github.com/search?utf8=%E2%9C%93&q=fluent-r). The examples that follow are provided to demonstrate basic usage.
 
 ### DeployR Analytics Integration Example
 
