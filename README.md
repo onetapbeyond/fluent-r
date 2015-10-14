@@ -7,7 +7,7 @@ For a complete description of the Fluent R DSLs currently supported by the libra
 - [DeployR Fluent R DSL](dsl/deployr/README.md)
 - [OpenCPU Fluent R DSL](dsl/opencpu/README.md)
 
-For a discussion on building `Zero-Code R Integration APIs` that highlights the ease of potential of using the fluent-r library see the following [short guide](design/README.md).
+For a discussion on building `Zero-Code R Integration APIs` that highlights the ease of use and potential of the fluent-r library see the following [short guide](design/README.md).
 
 ### Gradle Dependency
 
