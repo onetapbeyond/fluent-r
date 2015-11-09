@@ -1,5 +1,7 @@
 ## fluent-r
 
+[![Build Status](https://travis-ci.org/onetapbeyond/fluent-r.svg?branch=master)](https://travis-ci.org/onetapbeyond/fluent-r)
+
 The fluent-r library offers a simple solution for R analytics integration within any Java, Groovy, Scala or Clojure application. The library exposes a simple and intuitive natural language interface called the Fluent R DSL. This DSL supports the declaration and execution of R analytics services offered by popular open source R integration servers, including [DeployR](http://deployr.revolutionanalytics.com) and [OpenCPU](http://opencpu.org).
 
 For a complete description of the Fluent R DSLs currently supported by the library see the following language specifications:
