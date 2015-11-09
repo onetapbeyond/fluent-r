@@ -1,7 +1,5 @@
 apply plugin: 'groovy'
 apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'signing'
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
@@ -29,25 +27,21 @@ dependencies {
 }
 
 test {
-	exclude '**'
+  description = 'Default (OpenCPU) Fluent R DSL Tests.'
+  systemProperty 'endpoint', 'https://public.opencpu.org/ocpu/'
+  systemProperty 'blindTrust', 'true'
+  include 'io/onetapbeyond/fluent/r/opencpu/**'
+  exclude 'io/onetapbeyond/fluent/r/deployr/**'
 }
 
 task deployrTest(type: Test) {
-  description = 'Tests DeployR Fluent R DSL Integration.'
+  description = 'DeployR Fluent R DSL Tests.'
 	systemProperty 'username', 'testuser'
 	systemProperty 'password', 'changeme'
 	systemProperty 'endpoint', 'http://localhost:7400/deployr'
 	systemProperty 'blindTrust', 'true'
 	include 'io/onetapbeyond/fluent/r/deployr/**'
 	exclude 'io/onetapbeyond/fluent/r/opencpu/**'
-}
-
-task opencpuTest(type: Test) {
-  description = 'Tests OpenCPU Fluent R DSL Integration.'
-  systemProperty 'endpoint', 'https://public.opencpu.org/ocpu/'
-  systemProperty 'blindTrust', 'true'
-  include 'io/onetapbeyond/fluent/r/opencpu/**'
-  exclude 'io/onetapbeyond/fluent/r/deployr/**'
 }
 
 groovydoc {
@@ -76,52 +70,4 @@ task sourcesJar(type: Jar) {
 
 artifacts {
     archives javadocJar, sourcesJar
-}
-
-signing {
-    sign configurations.archives
-}
-
-uploadArchives {
-  repositories {
-    mavenDeployer {
-      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-        authentication(userName: ossrhUsername, password: ossrhPassword)
-      }
-
-      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-        authentication(userName: ossrhUsername, password: ossrhPassword)
-      }
-
-      pom.project {
-        name 'fluent-r'
-        packaging 'jar'
-        description 'Fluent R - Analytics Integration, Naturally.'
-        url 'https://github.com/onetapbeyond/fluent-r'
-
-        scm {
-          connection 'scm:svn:http://foo.googlecode.com/svn/trunk/'
-          developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
-          url 'http://foo.googlecode.com/svn/trunk/'
-        }
-
-        licenses {
-          license {
-            name 'The Apache License, Version 2.0'
-            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-          }
-        }
-
-        developers {
-          developer {
-            id 'onetapbeyond'
-            name 'David Russell'
-            email ''
-          }
-        }
-      }
-    }
-  }
 }
